@@ -32,8 +32,7 @@
     "lint": "eslint . --ext .js,.vue",
     "lint:md": "markdownlint \"**/*.md\" -c markdownlint.config.yml --ignore node_modules --ignore docs/components --ignore _site --ignore docs/examples/*/",
     "test": "jest",
-    "start": "rollup -c && bundle exec jekyll serve --source docs",
-    "prepare": "rollup -c"
+    "start": "rollup -c && bundle exec jekyll serve --source docs"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
