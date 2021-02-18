@@ -1,6 +1,6 @@
+import { h } from 'vue';
 import Namespace from './namespace';
 import { string } from '../types';
-
 /**
  * This component provides maps for managing objects by name (string), and also provides utility
  * methods. `vglNamespace` object can be injected to descendant components for using it.
@@ -58,7 +58,7 @@ export default {
       }),
     };
   },
-  beforeDestroy() {
+  beforeUnmount() {
     const {
       geometries, materials, textures, object3ds, curves,
     } = this.vglNamespace;
@@ -68,7 +68,7 @@ export default {
     if (object3ds) object3ds.destroy();
     if (curves) curves.destroy();
   },
-  render(h) {
-    return h(this.tag, this.$slots.default);
+  render() {
+    return h(this.tag, this.$slots.default());
   },
 };

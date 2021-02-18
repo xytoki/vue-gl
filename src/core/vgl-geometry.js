@@ -1,3 +1,4 @@
+import { h } from 'vue';
 import { BufferGeometry, BufferAttribute } from 'three';
 import { name, floatArray } from '../types';
 import { validateName, validateFloatArray } from '../validators';
@@ -38,7 +39,7 @@ export default {
       if (this.name !== undefined) this.vglNamespace.geometries.emit(this.name, this.inst);
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.name !== undefined) this.vglNamespace.geometries.delete(this.name, this.inst);
     this.inst.dispose();
   },
@@ -121,7 +122,7 @@ export default {
       this.update();
     },
   },
-  render(h) {
-    return this.$slots.default ? h('template', this.$slots.default) : undefined;
+  render() {
+    return this.$slots.default ? h('template', this.$slots.default()) : undefined;
   },
 };

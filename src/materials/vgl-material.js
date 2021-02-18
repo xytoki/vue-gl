@@ -1,6 +1,7 @@
 import {
   Material, FrontSide, BackSide, DoubleSide,
 } from 'three';
+import { h } from 'vue';
 import { string, name, boolean } from '../types';
 import { validateName } from '../validators';
 
@@ -66,10 +67,10 @@ export default {
       this.update();
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.name !== undefined) this.vglNamespace.materials.delete(this.name, this.inst);
   },
-  render(h) {
-    return this.$slots.default ? h('template', this.$slots.default) : undefined;
+  render() {
+    return this.$slots.default ? h('template', this.$slots.default()) : undefined;
   },
 };

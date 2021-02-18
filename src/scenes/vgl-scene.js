@@ -42,7 +42,7 @@ export default {
   created() {
     this.vglObject3d.listen(this.emitAsScene);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.backgroundTexture !== undefined) {
       this.vglNamespace.textures.unlisten(this.backgroundTexture, this.setBackgroundTexture);
     }

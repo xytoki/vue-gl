@@ -1,4 +1,5 @@
 import { Curve } from 'three';
+import { h } from 'vue';
 import { name } from '../types';
 import { validateName } from '../validators';
 
@@ -20,7 +21,7 @@ export default {
     /** The THREE.Curve instance. */
     inst: () => new Curve(),
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.name !== undefined) this.vglNamespace.curves.delete(this.name, this.inst);
   },
   watch: {
@@ -33,7 +34,7 @@ export default {
       if (newName !== undefined) this.vglNamespace.curves.set(newName, this.inst);
     },
   },
-  render(h) {
-    return this.$slots.default ? h('template', this.$slots.default) : undefined;
+  render() {
+    return this.$slots.default ? h('template', this.$slots.default()) : undefined;
   },
 };

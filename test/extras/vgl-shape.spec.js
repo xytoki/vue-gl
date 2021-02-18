@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue';
 import { Shape, Vector2 } from 'three';
+import { h } from 'vue';
 import { VglShape, VglNamespace, VglPath } from '../../src';
 
 describe('VglShape', () => {
@@ -64,7 +65,7 @@ describe('VglShape', () => {
     test('is template element when the component has children', () => {
       const vm = new Vue({
         components: { VglShape, VglNamespace },
-        render(h) {
+        render() {
           return h('vgl-namespace', [h('vgl-shape', { ref: 'examin' }, ['child text'])]);
         },
       }).$mount();

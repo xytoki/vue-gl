@@ -1,4 +1,5 @@
 import { Object3D } from 'three';
+import { h } from 'vue';
 import Tree from './tree';
 import { parseVector3, parseEuler, parseQuaternion } from '../parsers';
 import {
@@ -63,7 +64,7 @@ export default {
     /** Emit an event in the `object3ds` namespace. */
     emitAsObject3d() { this.vglNamespace.object3ds.emit(this.name, this.inst); },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.inst.parent) this.inst.parent.remove(this.inst);
     if (this.name !== undefined) {
       this.vglObject3d.unlisten(this.emitAsObject3d);
@@ -136,7 +137,7 @@ export default {
       this.vglObject3d.emit();
     },
   },
-  render(h) {
-    return this.$slots.default ? h('template', this.$slots.default) : undefined;
+  render() {
+    return this.$slots.default ? h('template', this.$slots.default()) : undefined;
   },
 };

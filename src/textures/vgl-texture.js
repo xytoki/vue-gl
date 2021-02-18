@@ -11,6 +11,7 @@ import {
   RGBEEncoding, LogLuvEncoding, RGBM7Encoding, RGBM16Encoding, RGBDEncoding, BasicDepthPacking,
   RGBADepthPacking,
 } from 'three';
+import { h } from 'vue';
 import {
   string, vector2, boolean, name, int, float,
 } from '../types';
@@ -128,7 +129,7 @@ export default {
       if (this.name !== undefined) this.vglNamespace.textures.emit(this.name, this.inst);
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.name !== undefined) this.vglNamespace.textures.delete(this.name, this.inst);
   },
   watch: {
@@ -219,7 +220,7 @@ export default {
       this.update();
     },
   },
-  render(h) {
-    return this.$slots.default ? h('template', this.$slots.default) : undefined;
+  render() {
+    return this.$slots.default ? h('template', this.$slots.default()) : undefined;
   },
 };

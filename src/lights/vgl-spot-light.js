@@ -40,7 +40,7 @@ export default {
     /** The THREE.SpotLight instance. */
     inst: () => new SpotLight(),
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.inst.target.parent) this.inst.target.parent.remove(this.inst.target);
   },
   watch: {

@@ -26,7 +26,7 @@ export default {
     /** Set the geometry of the helper box from given object. */
     setFromObject(obj) { this.inst.setFromObject(obj); },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.object !== undefined) {
       this.vglNamespace.object3ds.unlisten(this.object, this.setFromObject);
     }

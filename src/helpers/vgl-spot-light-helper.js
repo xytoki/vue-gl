@@ -43,7 +43,7 @@ export default {
       this.inst.update();
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.light !== undefined) {
       this.vglNamespace.object3ds.unlisten(this.light, this.setLightUuid);
     }

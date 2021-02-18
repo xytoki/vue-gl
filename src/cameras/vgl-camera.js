@@ -42,7 +42,7 @@ export default {
   created() {
     this.vglObject3d.listen(this.emitAsCamera);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.vglObject3d.unlisten(this.emitAsCamera);
     this.vglNamespace.cameras.delete(this.name, this.inst);
   },

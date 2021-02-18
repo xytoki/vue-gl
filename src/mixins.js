@@ -35,7 +35,7 @@ export const VglObject3dWithMatarial = {
       immediate: true,
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     const { vglNamespace: { materials }, material, setMaterial } = this;
     if (material !== undefined) {
       parseNames(material).forEach((name) => materials.unlisten(name, setMaterial));
@@ -72,7 +72,7 @@ export const VglObject3dWithMatarialAndGeometry = {
       immediate: true,
     },
   },
-  beforeDestroy() { this.vglNamespace.geometries.unlisten(this.geometry, this.setGeometry); },
+  beforeUnmount() { this.vglNamespace.geometries.unlisten(this.geometry, this.setGeometry); },
 };
 
 export const VglMaterialWithMap = {
@@ -100,7 +100,7 @@ export const VglMaterialWithMap = {
       immediate: true,
     },
   },
-  beforeDestroy() { this.vglNamespace.textures.unlisten(this.map, this.setMap); },
+  beforeUnmount() { this.vglNamespace.textures.unlisten(this.map, this.setMap); },
 };
 
 export const VglGeometryWithShapes = {
@@ -122,7 +122,7 @@ export const VglGeometryWithShapes = {
       this.update();
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.shapes !== undefined) {
       const shapeNames = parseNames(this.shapes);
       shapeNames.forEach((shapeName) => {

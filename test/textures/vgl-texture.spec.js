@@ -10,6 +10,7 @@ import {
   UnsignedIntType,
   LogLuvEncoding,
 } from 'three';
+import { h } from 'vue';
 import { VglTexture, VglNamespace } from '../../src';
 
 describe('VglTexture', () => {
@@ -238,7 +239,7 @@ describe('VglTexture', () => {
     test('is template element when the component has children', () => {
       const vm = new Vue({
         components: { VglTexture, VglNamespace },
-        render(h) {
+        render() {
           return h('vgl-namespace', [h('vgl-texture', { ref: 'examin' }, ['child text'])]);
         },
       }).$mount();

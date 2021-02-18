@@ -27,7 +27,7 @@ export default {
       if (this.inst.material.isLineDashedMaterial) this.inst.computeLineDistances();
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.geometry !== undefined) {
       this.vglNamespace.geometries.unlisten(this.geometry, this.computeLineDistances);
     }

@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue';
 import { Material, BackSide } from 'three';
+import { h } from 'vue';
 import { VglMaterial, VglNamespace } from '../../src';
 
 describe('VglMaterial', () => {
@@ -46,7 +47,7 @@ describe('VglMaterial', () => {
     test('is template element when the component has children', () => {
       const vm = new Vue({
         components: { VglMaterial, VglNamespace },
-        render(h) {
+        render() {
           return h('vgl-namespace', [h('vgl-material', { ref: 'examin' }, ['child text'])]);
         },
       }).$mount();

@@ -47,7 +47,7 @@ export default {
       this.vglObject3d.emit();
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.vglNamespace.cameras.unlisten(this.camera, this.update);
   },
   watch: {

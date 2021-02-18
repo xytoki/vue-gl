@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue';
 import { BufferGeometry, BufferAttribute } from 'three';
+import { h } from 'vue';
 import { VglGeometry, VglNamespace } from '../../src';
 
 describe('VglGeometry', () => {
@@ -121,7 +122,7 @@ describe('VglGeometry', () => {
     test('is template element when the component has children', () => {
       const vm = new Vue({
         components: { VglGeometry, VglNamespace },
-        render(h) {
+        render() {
           return h('vgl-namespace', [h('vgl-geometry', { ref: 'examin' }, ['child text'])]);
         },
       }).$mount();

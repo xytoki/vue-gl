@@ -1,3 +1,6 @@
+## Notes of this fork
+This is a temporary fork version of VueGL to work with vue3. Tests are not changed so they may all fail. 
+
 # VueGL
 
 [Vue.js](https://vuejs.org/) components rendering 3D WebGL graphics reactively with

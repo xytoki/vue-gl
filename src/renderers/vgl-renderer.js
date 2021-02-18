@@ -1,4 +1,5 @@
 import { WebGLRenderer } from 'three';
+import { h } from 'vue';
 import VglNamespace from '../core/vgl-namespace';
 import { boolean, string, name } from '../types';
 import { validateName } from '../validators';
@@ -15,9 +16,9 @@ export default {
   mixins: [VglNamespace],
   props: {
     /** Name of the using camera. */
-    camera: { type: name, required: true, validator: validateName },
+    camera: { type: name, validator: validateName },
     /** Name of the target scene. */
-    scene: { type: name, required: true, validator: validateName },
+    scene: { type: name, validator: validateName },
     /** Whether the canvas contains an alpha (transparency) buffer or not. */
     alpha: boolean,
     /** Whether the renderer will assume that colors have premultiplied alpha. */
@@ -137,7 +138,7 @@ export default {
     if (this.cameraRef) setCameraSize(this.cameraRef, this.$el.clientWidth, this.$el.clientHeight);
     this.requestRender(this.cameraRef && this.sceneRef);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.camera === undefined) {
       this.vglNamespace.cameras.unlisten(this.setFallbackCamera);
     } else {
@@ -194,17 +195,17 @@ export default {
       immediate: true,
     },
   },
-  render(h) {
-    return h('div', [h('iframe', {
-      style: {
-        visibility: 'hidden',
-        width: '100%',
-        height: '100%',
-        marginRight: '-100%',
-        border: 'none',
-      },
-      on: {
-        load: (event) => {
+  render() {
+    return h('div', [
+      h('iframe', {
+        style: {
+          visibility: 'hidden',
+          width: '100%',
+          height: '100%',
+          marginRight: '-100%',
+          border: 'none',
+        },
+        onLoad: (event) => {
           event.target.contentWindow.addEventListener('resize', () => {
             this.inst.setSize(this.$el.clientWidth, this.$el.clientHeight);
             if (this.cameraRef) {
@@ -214,6 +215,7 @@ export default {
           }, false);
         },
       },
-    }, this.$slots.default)]);
+      this.$slots.default()),
+    ]);
   },
 };

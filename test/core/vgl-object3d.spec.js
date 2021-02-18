@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue';
 import { Object3D } from 'three';
+import { h } from 'vue';
 import { VglObject3d, VglNamespace } from '../../src';
 
 describe('VglObject3d', () => {
@@ -150,7 +151,7 @@ describe('VglObject3d', () => {
     test('is template element when the component has children', () => {
       const vm = new Vue({
         components: { VglObject3d, VglNamespace },
-        render(h) {
+        render() {
           return h('vgl-namespace', [h('vgl-object3d', { ref: 'examin' }, ['child text'])]);
         },
       }).$mount();
